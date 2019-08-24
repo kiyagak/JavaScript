@@ -1,0 +1,30 @@
+<html>
+	<input type="date" id="myDate">
+
+	<script>
+		// declare a function
+		function minMaxDates() {
+			// today's date
+			var today = new Date();
+			// date for two weeks ago
+			var two_weeks_ago = new Date(new Date().setDate(new Date().getDate()-14))
+
+			// today's date in YYYY-mm-dd format
+			var rfmt_today = today.toISOString().split('T')[0]
+			// date for two weeks ago today's date in YYYY-mm-dd format
+			var rfmt_two_weeks_ago = two_weeks_ago.toISOString().split('T')[0]
+			
+			// set the input element's value attribute to today's date
+			document.getElementById("myDate").setAttribute("value", rfmt_today)
+			// set the input element's min attribute to today's date
+			// min attribute specifies the minimum date users can choose
+			document.getElementById("myDate").setAttribute("min", rfmt_today)
+			// set the input element's max attribute to today's date
+			// max attribute specifies the maximum date users can choose
+			document.getElementById("myDate").setAttribute("max", rfmt_two_weeks_ago)
+		}
+		
+		// execute the function once the page loads
+		window.onload = minMaxDates()
+	</script>
+</html>
