@@ -1,9 +1,22 @@
 <html>
-	<input type="date" id="myDate">
-
+	<!-- Label tag for the minimum date selection.  -->
+	<label class="class_min_date">Minimum date: </label>
+	<!-- Tag that asks the user for the minimum date selection.  -->
+	<input type="date" id="attr_min_date">
+	<!-- HTML tag representing a line break -->
+	<br>
+	<!-- Label tag for the maximum date selection.  -->
+	<label class="class_max_date">Maximum date: </label>
+	<!-- Tag that asks the user for the maximum date selection.  -->
+	<input type="date" id="attr_max_date">
+	
+	<!-- 
+		JavaScript to assign the minimum date and maximum date 
+		attributes to the input HTML tags above.  
+	-->
 	<script>
 		// declare a function
-		function minMaxDates() {
+		function minMaxDates(elementID) {
 			// today's date
 			var today = new Date();
 			// date for two weeks ago
@@ -14,17 +27,26 @@
 			// date for two weeks ago today's date in YYYY-mm-dd format
 			var rfmt_two_weeks_ago = two_weeks_ago.toISOString().split('T')[0]
 			
-			// set the input element's value attribute to today's date
-			document.getElementById("myDate").setAttribute("value", rfmt_today)
+			// if the minMaxDates parameter is "attr_min_date"
+			if (elementID == "attr_min_date") {
+				// set the input element's value attribute to date of two weeks ago
+				document.getElementById(elementID).setAttribute("value", rfmt_two_weeks_ago)
+			// or if the minMaxDates parameter is "attr_min_date"
+			} else if (elementID == "attr_max_date") {
+				// set the input element's value attribute to today's date
+				document.getElementById(elementID).setAttribute("value", rfmt_today)
+			}
+			
 			// set the input element's min attribute to today's date
 			// min attribute specifies the minimum date users can choose
-			document.getElementById("myDate").setAttribute("min", rfmt_two_weeks_ago)
+			document.getElementById(elementID).setAttribute("min", rfmt_two_weeks_ago)
 			// set the input element's max attribute to today's date
 			// max attribute specifies the maximum date users can choose
-			document.getElementById("myDate").setAttribute("max", rfmt_today)
+			document.getElementById(elementID).setAttribute("max", rfmt_today)
 		}
 		
 		// execute the function once the page loads
-		window.onload = minMaxDates()
+		window.onload = minMaxDates("attr_min_date")
+		window.onload = minMaxDates("attr_max_date")
 	</script>
 </html>
