@@ -1,0 +1,32 @@
+<script>
+window.onload = function() {
+    var observer = new IntersectionObserver(function(entries) {
+    	if(entries[0].isIntersecting === true) {
+    		elm_next = entries[0].target.nextSibling.nextSibling;
+    		
+    		if (elm_next != null) {
+    			elm_next.style.height = '100%';
+    			elm_next.style.opacity = 1;
+    			elm_next.style.transition = 'height 1s, opacity 1s';
+    		}
+    	}
+    }, { threshold: [1] });
+     
+    var buffer_elements = document.querySelectorAll('.buffer_element');
+    
+    for (a = 0; a < buffer_elements.length; a++) {
+	    elm_buffer_element = buffer_elements[a];
+	    observer.observe(elm_buffer_element);
+    }
+}
+</script>
+
+
+
+<div id="lazy_element" style="height: 100%; opacity: 1; background-color: red;"></div>
+<div class="buffer_element" style="height: 2%;"></div>
+<div id="lazy_element" style="height: 0%; opacity: 0; background-color: black;"></div>
+<div class="buffer_element" style="height: 2%;"></div>
+<div id="lazy_element" style="height: 0%; opacity: 0; background-color: green;"></div>
+<div class="buffer_element" style="height: 2%;"></div>
+
